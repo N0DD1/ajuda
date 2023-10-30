@@ -16,8 +16,8 @@ const std::vector<std::string>& Class::getUCs() const {
 
 
 // Setters
-void Class::setClass(string& new_class_code) {
-    this->class_code = class_code;
+void Class::setClass(string new_class_code) {
+    this->class_code = new_class_code;
 }
 //adiciona unidade curricular
 void Class::addUC(string uc) {
