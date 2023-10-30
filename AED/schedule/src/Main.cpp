@@ -12,7 +12,6 @@
 #include "Lecture.cpp"
 #include <map>
 #include <tuple>
-using namespace std;
 void readData(std::map<std::string, UC>& ucs,std::map<std::string, Class>& classes,std::map<int, Students>& students,std::map<std::tuple<std::string, std::string, std::string>, Lecture>& lectures){
     std::ifstream file1("classes_per_uc.csv");
     if (file1.is_open()) {
@@ -68,7 +67,7 @@ void readData(std::map<std::string, UC>& ucs,std::map<std::string, Class>& class
                 
                 if (lectures.find(std::make_tuple(classCode, ucCode, TorP)) == lectures.end()) {
                     Lecture newlecture(classType, weekday, startHour, duration, ucCode, classCode);
-                    lectures[std::tuple(classCode, ucCode, TorP)] = newlecture;
+                    lectures[std::make_tuple(classCode, ucCode, TorP)] = newlecture;
                 }    
             }
         }
@@ -92,7 +91,7 @@ void readData(std::map<std::string, UC>& ucs,std::map<std::string, Class>& class
         std::vector<std::pair<std::string, std::string>> studentClasses = students[studentCode].getClasses();
         for (auto ci:studentClasses)
             {
-                cout <<ci.first<<","<<ci.second<<endl;
+                cout <<'('<<ci.first<<","<<ci.second<<')'<<endl;
             }
             
     
@@ -163,24 +162,24 @@ void consultStudentSchedule(std::map<std::string, UC>& ucs,std::map<std::string,
                 
                 std::cout << "(" << classCode << ", " << ucCode << ", " << "T)" << std::endl;
                 
-                if (lectures.find(std::tuple(classCode, ucCode, "T"))!=lectures.end())
+                if (lectures.find(std::make_tuple(classCode, ucCode, "T"))!=lectures.end())
                 {
                     std::cout << "UC: " << ucCode << ", Class: " << classCode << std::endl;
-                    std::cout << "Lecture Start Hour: " << lectures[std::tuple(classCode, ucCode, "T")].getStartH() << std::endl;
-                    std::cout << "Lecture Duration: " << lectures[std::tuple(classCode, ucCode, "T")].getLecTime() << std::endl;
-                    std::cout << "Type: " << lectures[std::tuple(classCode, ucCode, "T")].getType() << std::endl;
-                    std::cout << "Weekday: " << lectures[std::tuple(classCode, ucCode, "T")].getWeekday() << std::endl;
+                    std::cout << "Lecture Start Hour: " << lectures[std::make_tuple(classCode, ucCode, "T")].getStartH() << std::endl;
+                    std::cout << "Lecture Duration: " << lectures[std::make_tuple(classCode, ucCode, "T")].getLecTime() << std::endl;
+                    std::cout << "Type: " << lectures[std::make_tuple(classCode, ucCode, "T")].getType() << std::endl;
+                    std::cout << "Weekday: " << lectures[std::make_tuple(classCode, ucCode, "T")].getWeekday() << std::endl;
                     std::cout << std::endl;   
                 }
                 
                 
-                if (lectures.find(std::tuple(classCode, ucCode, "P"))!=lectures.end())
+                if (lectures.find(std::make_tuple(classCode, ucCode, "P"))!=lectures.end())
                 {
                     std::cout << "UC: " << ucCode << ", Class: " << classCode << std::endl;
-                    std::cout << "Lecture Start Hour: " << lectures[std::tuple(classCode, ucCode, "P")].getStartH() << std::endl;
-                    std::cout << "Lecture Duration: " << lectures[std::tuple(classCode, ucCode, "P")].getLecTime() << std::endl;
-                    std::cout << "Type: " << lectures[std::tuple(classCode, ucCode, "P")].getType() << std::endl;
-                    std::cout << "Weekday: " << lectures[std::tuple(classCode, ucCode, "P")].getWeekday() << std::endl;
+                    std::cout << "Lecture Start Hour: " << lectures[std::make_tuple(classCode, ucCode, "P")].getStartH() << std::endl;
+                    std::cout << "Lecture Duration: " << lectures[std::make_tuple(classCode, ucCode, "P")].getLecTime() << std::endl;
+                    std::cout << "Type: " << lectures[std::make_tuple(classCode, ucCode, "P")].getType() << std::endl;
+                    std::cout << "Weekday: " << lectures[std::make_tuple(classCode, ucCode, "P")].getWeekday() << std::endl;
                     std::cout << std::endl; 
                 }
                 
@@ -199,7 +198,7 @@ void porcessData(){
     
     
     
-    //consultStudentSchedule(ucs,classes, students, lectures);
+    consultStudentSchedule(ucs,classes, students, lectures);
     // int ID;
     // cin>>ID;
     // if (students.find(ID)!=students.end())
