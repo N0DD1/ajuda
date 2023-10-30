@@ -1,0 +1,2 @@
+C:/Users/manue/OneDrive/Ambiente de Trabalho/schedule/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/manue/OneDrive/Ambiente de Trabalho/schedule/cmake-build-debug/CMakeFiles/rebuild_cache.dir
